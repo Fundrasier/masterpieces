@@ -1,0 +1,9 @@
+# .gitpod.yml
+tasks:
+  - init: cd frontend && yarn install # Navigate to frontend and install dependencies
+  - command: cd frontend && yarn dev  # Start the development server
+
+ports:
+  - port: 3000                        # Expose the Nuxt dev server on port 3000
+    onOpen: open-preview
+    visibility: public
