@@ -1,5 +1,0 @@
-tasks:
-  - name: Start API server
-    command: cd api && npm install && npm start
-  - name: Start frontend server
-    command: cd frontend && npm install && npm run serve
