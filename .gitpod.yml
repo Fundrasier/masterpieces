@@ -1,23 +1,25 @@
 # .gitpod.yml
 tasks:
-  - name: Install Frontend
+  - name: Install Dependencies
     command: |
-      cd Frontend && npm install
-  - name: Install API
+      cd frontend && npm install && cd ../api && npm install
+  - name: Start Development Servers
+    init: |
+      cd frontend && npm install
+      cd ../api && npm install
     command: |
-      cd api && npm install
-  - name: Run Frontend
-    command: |
-      cd Frontend && npm run dev
-      # Gitpod will expose the frontend port (3000)
-
-  - name: Run API
-    command: |
-      cd api && npm run dev
-      # Gitpod will expose the API port (adjust if necessary)
-
+      cd frontend && npm run dev &
+      cd ../api && npm run dev &
 ports:
-  - port: 3000 # Expose frontend
+  - port: 3000
     onOpen: open-preview
-  - port: 4000 # Expose API (change based on your API server)
+  - port: 4000
     onOpen: open-preview
+env:
+  # Example Environment Variables
+  NUXT_PUBLIC_API_URL: "http://localhost:4000"
+  API_SECRET_KEY: "your-secret-key-here"
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - esbenp.prettier-vscode
