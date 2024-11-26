@@ -1,0 +1,23 @@
+# .gitpod.yml
+tasks:
+  - name: Install Frontend
+    command: |
+      cd Frontend && npm install
+  - name: Install API
+    command: |
+      cd api && npm install
+  - name: Run Frontend
+    command: |
+      cd Frontend && npm run dev
+      # Gitpod will expose the frontend port (3000)
+
+  - name: Run API
+    command: |
+      cd api && npm run dev
+      # Gitpod will expose the API port (adjust if necessary)
+
+ports:
+  - port: 3000 # Expose frontend
+    onOpen: open-preview
+  - port: 4000 # Expose API (change based on your API server)
+    onOpen: open-preview
