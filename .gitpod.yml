@@ -1,24 +1,21 @@
 # .gitpod.yml
+
 tasks:
   - name: Install Dependencies
     command: |
-      cd frontend && npm install && cd ../api && npm install
+      if [ -d frontend ]; then cd frontend && npm install && cd ..; fi
+      if [ -d api ]; then cd api && npm install && cd ..; fi
   - name: Start Development Servers
-    init: |
-      cd frontend && npm install
-      cd ../api && npm install
     command: |
-      cd frontend && npm run dev &
-      cd ../api && npm run dev &
+      if [ -d frontend ]; then cd frontend && npm run dev & fi
+      if [ -d api ]; then cd api && npm run dev & fi
+
 ports:
   - port: 3000
     onOpen: open-preview
   - port: 4000
     onOpen: open-preview
-env:
-  # Example Environment Variables
-  NUXT_PUBLIC_API_URL: "http://localhost:4000"
-  API_SECRET_KEY: "your-secret-key-here"
+
 vscode:
   extensions:
     - dbaeumer.vscode-eslint
